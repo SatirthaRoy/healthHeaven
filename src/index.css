@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.boska {
+  font-family: 'Boska', serif;
+}
+
+* {
+  font-family: 'Switzer', sans-serif;
+  /* border: 1px solid red; */
+}

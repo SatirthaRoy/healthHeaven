@@ -7,7 +7,8 @@ import {
   Collapse,
 } from "@material-tailwind/react";
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom';
+import { FaShoppingCart } from "react-icons/fa";
+import { Link, NavLink } from 'react-router-dom';
 
 
 const Nav = () => {
@@ -22,24 +23,15 @@ const Nav = () => {
   }, []);
 
   const navList = (
-    <ul className="*:font-bold *:uppercase *:text-white *:text-xl mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul className="*:font-normal *:text-text *:text-xl mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography as="li" variant="small" color="blue-gray" className="p-1">
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? `flex items-center text-[#EEFF25]` : `flex items-center`
+            isActive ? `flex items-center text-theme` : `flex items-center`
           }
         >
           Home
-        </NavLink>
-      </Typography>
-      <Typography as="li" variant="small" color="blue-gray" className="p-1">
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? `flex items-center text-[#EEFF25]` : `flex items-center`
-          }
-        >
-          Contact Us
         </NavLink>
       </Typography>
 
@@ -48,30 +40,21 @@ const Nav = () => {
         <NavLink
           to='/dashboard'
           className={({ isActive }) =>
-            isActive ? `flex items-center text-[#EEFF25]` : `flex items-center`
+            isActive ? `flex items-center text-theme` : `flex items-center`
           }
         >
           Dashboard
         </NavLink>
       </Typography>} */}
-      <Typography as="li" variant="small" color="blue-gray" className="p-1">
-        <NavLink
-          to="/menu"
-          className={({ isActive }) =>
-            isActive ? `flex items-center text-[#EEFF25]` : `flex items-center`
-          }
-        >
-          our menu
-        </NavLink>
-      </Typography>
+      
       <Typography as="li" variant="small" color="blue-gray" className="p-1">
         <NavLink
           to="/shop"
           className={({ isActive }) =>
-            isActive ? `flex items-center text-[#EEFF25]` : `flex items-center`
+            isActive ? `flex items-center text-theme` : `flex items-center`
           }
         >
-          our shop
+           Shop
         </NavLink>
       </Typography>
       {/* if the user if logged in */}
@@ -79,7 +62,7 @@ const Nav = () => {
         <NavLink
           to="/dashboard/mycart"
           className={({ isActive }) =>
-            isActive ? `flex items-center text-[#EEFF25]` : `flex items-center`
+            isActive ? `flex items-center text-theme` : `flex items-center`
           }
         >
           <div className='text-4xl relative'>
@@ -88,19 +71,39 @@ const Nav = () => {
           </div>
         </NavLink>
       </Typography>} */}
+      <Typography as="li" variant="small" color="blue-gray" className="p-1">
+        <NavLink
+          to="/dashboard/mycart"
+          className={({ isActive }) =>
+            isActive ? `flex items-center text-[]` : `flex items-center`
+          }
+        >
+          <div className='text-4xl relative'>
+            <FaShoppingCart />  
+            <div className="absolute top-0 -right-5 badge bg-theme text-white">+12</div>
+          </div>
+        </NavLink>
+      </Typography>
+      <Typography as="li" variant="small" color="blue-gray" className="p-1">
+      <select defaultValue={1} className="select select-ghost w-full max-w-xs">
+        <option disabled value={1}>Language</option>
+        <option value='english'>English</option>
+        <option value='spanish'>Spanish</option>
+      </select>
+      </Typography>
     </ul>
   );
 
   return (
     <div className="-m-6 max-h-[768px] w-[calc(100%)] mt-0 mx-0">
-      <Navbar className=" bg-black bg-opacity-45 border-0 fixed top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
+      <Navbar className=" bg-white border-b-2 fixed top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
             as="a"
-            className="mr-4 cursor-pointer py-1.5 cinzel text-3xl font-black text-white"
+            className="mr-4 cursor-pointer py-1.5 cinzel text-3xl font-black text-[#44c2fd] boska"
           >
-            BISTRO BOSS <br />
-            <span className="text-2xl font-bold cinzel">Restaurant</span>
+            Health <br />
+            Heaven
           </Typography>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
@@ -145,9 +148,20 @@ const Nav = () => {
                 </Link>
               </div>
             )} */}
+            <div className="flex items-center gap-x-1">
+                <Link to="/login">
+                  <Button
+                    variant="text"
+                    size="sm"
+                    className="hidden lg:inline-block bg-theme text-white px-5 py-3"
+                  >
+                    <span>Join Us</span>
+                  </Button>
+                </Link>
+              </div>
             <IconButton
               variant="text"
-              className="ml-auto h-6 w-6 text-white hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+              className="ml-auto h-6 w-6 text-black hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
               ripple={false}
               onClick={() => setOpenNav(!openNav)}
             >
