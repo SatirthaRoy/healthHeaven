@@ -4,8 +4,8 @@ const Footer = () => {
   return (
     <footer className="footer footer-center p-10 bg-theme bg-opacity-80 mt-24 text-white ">
       <aside className="space-y-10">
-        <h1 className="boska font-bold text-9xl">HH</h1>
-        <p className="font-bold text-7xl boska">
+        <h1 className="boska font-bold text-6xl md:text-9xl">HH</h1>
+        <p className="font-bold text-3xl md:text-7xl boska">
           HealthHeaven Ltd.
         </p>
         <button className="p-5 text-4xl boska font-semibold border border-white rounded-full">Join NOW</button>

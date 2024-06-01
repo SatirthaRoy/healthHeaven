@@ -13,7 +13,7 @@ import { FreeMode, Navigation, Pagination } from "swiper/modules";
 const Slider = () => {
   return (
     <Swiper
-      slidesPerView={3}
+      slidesPerView={'auto'}
       spaceBetween={30}
       freeMode={true}
       grabCursor={true}
