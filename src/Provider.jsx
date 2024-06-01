@@ -7,13 +7,16 @@ export const Alldata = createContext()
 const Provider = ({children}) => {
 
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, loggedUser => {
       if(loggedUser) {
-        setUser(loggedUser)
+        setUser(loggedUser);
+        setLoading(false)
       } else {
         setUser(null);
+        setLoading(false);
       }
     })
 
@@ -30,7 +33,9 @@ const Provider = ({children}) => {
 
   const obj = {
     user,
+    setUser,
     auth,
+    loading,
     logInWithEmail,
     logOut
   }

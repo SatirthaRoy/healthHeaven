@@ -3,6 +3,7 @@ import {
 } from "react-router-dom";
 import Home from "../Pages/Home/Home";
 import App from "../App";
+import Join from "../Pages/Login Register/Join";
 
 export const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home/>
+      },
+      {
+        path: '/join', 
+        element: <Join/>
       }
     ]
   }

@@ -13,7 +13,7 @@ import SectionTitle from "../../../../Shared components/SectionTitle";
 const Slider = () => {
   return (
     <Swiper
-      slidesPerView={'auto'}
+      slidesPerView={window.innerWidth > 750 ? 3 :'auto'}
       spaceBetween={30}
       freeMode={true}
       grabCursor={true}

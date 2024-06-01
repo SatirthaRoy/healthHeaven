@@ -149,11 +149,11 @@ const Nav = () => {
               </div>
             )} */}
             <div className="flex items-center gap-x-1">
-                <Link to="/login">
+                <Link to="/join">
                   <Button
                     variant="text"
                     size="sm"
-                    className="hidden lg:inline-block bg-theme hover:bg-theme text-white px-5 py-3"
+                    className="lg:inline-block bg-theme hover:bg-theme text-white px-5 py-3"
                   >
                     <span>Join Us</span>
                   </Button>
@@ -243,17 +243,7 @@ const Nav = () => {
               </Link>
             </div>
           )} */}
-          <div className="flex items-center gap-x-1">
-            <Link to="/login">
-              <Button
-                variant="text"
-                size="sm"
-                className="lg:inline-block bg-theme hover:bg-theme text-white px-5 py-3"
-              >
-                <span>Join Us</span>
-              </Button>
-            </Link>
-          </div>
+          
         </Collapse >
       </Navbar>
     </div>

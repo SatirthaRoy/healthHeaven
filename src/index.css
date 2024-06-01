@@ -35,3 +35,7 @@
   object-fit: cover;
   border-radius: 40px;
 }
+
+.clippy {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
