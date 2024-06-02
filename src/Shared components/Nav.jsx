@@ -49,7 +49,7 @@ const Nav = () => {
         <NavLink
           to="/dashboard/mycart"
           className={({ isActive }) =>
-            isActive ? `flex items-center text-[]` : `flex items-center`
+            isActive ? `flex items-center text-theme` : `flex items-center`
           }
         >
           <div className="text-4xl relative">
@@ -93,23 +93,38 @@ const Nav = () => {
               <div>
                 <details className="dropdown">
                   <summary className="m-1 btn p-0 rounded-full">
-                  <div className="size-12 rounded-full">
-                    <img
-                      src={user?.photoURL}
-                      alt=""
-                      className="size-12 rounded-full"
-                    />
-                  </div>
+                    <div className="size-12 rounded-full">
+                      <img
+                        src={user?.photoURL}
+                        alt=""
+                        className="size-12 rounded-full"
+                      />
+                    </div>
                   </summary>
                   <ul className="p-2 -left-20 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-40">
                     <li>
-                      <a><FaUser/> Update Profile</a>
+                      <a>
+                        <FaUser /> Update Profile
+                      </a>
                     </li>
                     <li>
-                      <a><FaBook/> Dashboard</a>
+                      <NavLink to='/dashboard'
+                        className={({ isActive }) =>
+                          isActive
+                            ? `flex items-center text-theme`
+                            : `flex items-center`
+                        }
+                      >
+                        <FaBook /> Dashboard
+                      </NavLink>
                     </li>
                     <li>
-                      <button onClick={() => logOut()} className="text-white font-semibold btn btn-error">Logout</button>
+                      <button
+                        onClick={() => logOut()}
+                        className="text-white font-semibold btn btn-error"
+                      >
+                        Logout
+                      </button>
                     </li>
                   </ul>
                 </details>

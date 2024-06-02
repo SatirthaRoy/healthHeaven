@@ -4,6 +4,7 @@ import {
 import Home from "../Pages/Home/Home";
 import App from "../App";
 import Join from "../Pages/Login Register/Join";
+import Dashboard from "../Pages/Dashboard/Dashboard";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,15 @@ export const router = createBrowserRouter([
       {
         path: '/join', 
         element: <Join/>
+      }
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard/>,
+    children: [
+      {
+        
       }
     ]
   }
