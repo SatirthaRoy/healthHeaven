@@ -18,7 +18,7 @@ const Register = ({setLogin}) => {
 
   const axiosSecure = useAxios();
 
-  const {auth, setUser, signUpWithEmail} = useData();
+  const {auth, setUser, signUpWithEmail, signInPop} = useData();
   const { register, handleSubmit, formState: {errors} } = useForm();
 
   const [spinner, setSpinner] = useState(false);
@@ -26,6 +26,7 @@ const Register = ({setLogin}) => {
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
 
+  // form email password login
   const onSubmit = async(data) => {
     // set spinner to true
     setSpinner(true);
@@ -75,8 +76,32 @@ const Register = ({setLogin}) => {
         setSpinner(false);
         toast.error(e?.message.split('/')[1].replace(')',''));
       })
-
     }
+  }
+
+  // google or github login
+  const onIconClick = (provider) => {
+    signInPop(provider)
+    .then(result => {
+      setUser(result.user);
+      const userData = {
+        name: result.user?.displayName,
+        email: result.user?.email,
+        role: 'user',
+        imageUrl: result.user?.photoURL,
+        uid: result.user?.uid
+      }
+      axiosSecure.get(`/users/${userData.uid}`)
+      .then(res => {
+        if(!res.data?.isInData) {
+          axiosSecure.post('/users', userData)
+          .then(res => {})
+        }
+      })
+      toast.success('Successfully singed up.');
+      navigate('/');
+    })
+    .catch(e => console.log("signInPop error: ", e));
   }
 
   return (
@@ -126,7 +151,7 @@ const Register = ({setLogin}) => {
           <p className='text-center text-xl font-medium'>Or sign in with</p>
           <div className='flex justify-center gap-10'>
             <div className='cursor-pointer text-2xl border border-[#444444] rounded-full p-3' onClick={() => onIconClick(googleProvider)}><FaGoogle/></div>
-            <div className='cursor-pointer text-2xl border border-[#444444] rounded-full p-3'><FaGithub/></div>
+            <div className='cursor-pointer text-2xl border border-[#444444] rounded-full p-3' onClick={() => onIconClick(githubProvider)}><FaGithub/></div>
           </div>
         </div>
       </div>

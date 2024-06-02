@@ -12,7 +12,7 @@ import { Link, NavLink } from "react-router-dom";
 import useData from "../Hooks/useData";
 
 const Nav = () => {
-  const { user } = useData();
+  const { user, logOut } = useData();
   const [openNav, setOpenNav] = useState(false);
 
   React.useEffect(() => {
@@ -35,18 +35,6 @@ const Nav = () => {
         </NavLink>
       </Typography>
 
-      {/* if user logged in */}
-      {/* {user && <Typography as="li" variant="small" color="blue-gray" className="p-1">
-        <NavLink
-          to='/dashboard'
-          className={({ isActive }) =>
-            isActive ? `flex items-center text-theme` : `flex items-center`
-          }
-        >
-          Dashboard
-        </NavLink>
-      </Typography>} */}
-
       <Typography as="li" variant="small" color="blue-gray" className="p-1">
         <NavLink
           to="/shop"
@@ -57,20 +45,6 @@ const Nav = () => {
           Shop
         </NavLink>
       </Typography>
-      {/* if the user if logged in */}
-      {/* {user && <Typography as="li" variant="small" color="blue-gray" className="p-1">
-        <NavLink
-          to="/dashboard/mycart"
-          className={({ isActive }) =>
-            isActive ? `flex items-center text-theme` : `flex items-center`
-          }
-        >
-          <div className='text-4xl relative'>
-            <FaShoppingCart />  
-            <div className="absolute top-0 -right-5 badge badge-error text-white">+{cart.length}</div>
-          </div>
-        </NavLink>
-      </Typography>} */}
       <Typography as="li" variant="small" color="blue-gray" className="p-1">
         <NavLink
           to="/dashboard/mycart"
@@ -114,47 +88,6 @@ const Nav = () => {
           </Typography>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
-            {/* if user is logged in
-            {user ? (
-              <div className="flex justify-center items-center gap-5">
-                <div className="size-12 rounded-full">
-                  <img
-                    src={user?.photoURL}
-                    alt=""
-                    className="size-12 rounded-full"
-                  />
-                </div>
-                <Button
-                  variant="text"
-                  size="sm"
-                  className="hidden lg:inline-block bg-orange-900 text-white px-5 py-3"
-                  onClick={() => logOut().then(() => console.log("signed OUT"))}
-                >
-                  <span>Log Out</span>
-                </Button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-x-1">
-                <Link to="/login">
-                  <Button
-                    variant="text"
-                    size="sm"
-                    className="hidden lg:inline-block bg-yellow-800 text-white px-5 py-3"
-                  >
-                    <span>Log In</span>
-                  </Button>
-                </Link>
-                <Link to="/register">
-                  <Button
-                    variant="text"
-                    size="sm"
-                    className="hidden lg:inline-block bg-orange-900 text-white px-5 py-3"
-                  >
-                    <span>Sign Up</span>
-                  </Button>
-                </Link>
-              </div>
-            )} */}
 
             {user ? (
               <div>
@@ -176,7 +109,7 @@ const Nav = () => {
                       <a><FaBook/> Dashboard</a>
                     </li>
                     <li>
-                      <button className="text-white font-semibold btn btn-error">Logout</button>
+                      <button onClick={() => logOut()} className="text-white font-semibold btn btn-error">Logout</button>
                     </li>
                   </ul>
                 </details>
