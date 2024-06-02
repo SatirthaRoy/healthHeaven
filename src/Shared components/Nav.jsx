@@ -6,13 +6,13 @@ import {
   IconButton,
   Collapse,
 } from "@material-tailwind/react";
-import React, { useState } from 'react'
-import { FaShoppingCart } from "react-icons/fa";
-import { Link, NavLink } from 'react-router-dom';
-
+import React, { useState } from "react";
+import { FaBook, FaShoppingCart, FaUser } from "react-icons/fa";
+import { Link, NavLink } from "react-router-dom";
+import useData from "../Hooks/useData";
 
 const Nav = () => {
-
+  const { user } = useData();
   const [openNav, setOpenNav] = useState(false);
 
   React.useEffect(() => {
@@ -46,7 +46,7 @@ const Nav = () => {
           Dashboard
         </NavLink>
       </Typography>} */}
-      
+
       <Typography as="li" variant="small" color="blue-gray" className="p-1">
         <NavLink
           to="/shop"
@@ -54,7 +54,7 @@ const Nav = () => {
             isActive ? `flex items-center text-theme` : `flex items-center`
           }
         >
-           Shop
+          Shop
         </NavLink>
       </Typography>
       {/* if the user if logged in */}
@@ -78,18 +78,25 @@ const Nav = () => {
             isActive ? `flex items-center text-[]` : `flex items-center`
           }
         >
-          <div className='text-4xl relative'>
-            <FaShoppingCart />  
-            <div className="absolute top-0 -right-5 badge bg-theme text-white">+12</div>
+          <div className="text-4xl relative">
+            <FaShoppingCart />
+            <div className="absolute top-0 -right-5 badge bg-theme text-white">
+              +12
+            </div>
           </div>
         </NavLink>
       </Typography>
       <Typography as="li" variant="small" color="blue-gray" className="p-1">
-      <select defaultValue={1} className="select select-ghost w-full max-w-xs">
-        <option disabled value={1}>Language</option>
-        <option value='english'>English</option>
-        <option value='spanish'>Spanish</option>
-      </select>
+        <select
+          defaultValue={1}
+          className="select select-ghost w-full max-w-xs"
+        >
+          <option disabled value={1}>
+            Language
+          </option>
+          <option value="english">English</option>
+          <option value="spanish">Spanish</option>
+        </select>
       </Typography>
     </ul>
   );
@@ -148,7 +155,34 @@ const Nav = () => {
                 </Link>
               </div>
             )} */}
-            <div className="flex items-center gap-x-1">
+
+            {user ? (
+              <div>
+                <details className="dropdown">
+                  <summary className="m-1 btn p-0 rounded-full">
+                  <div className="size-12 rounded-full">
+                    <img
+                      src={user?.photoURL}
+                      alt=""
+                      className="size-12 rounded-full"
+                    />
+                  </div>
+                  </summary>
+                  <ul className="p-2 -left-20 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-40">
+                    <li>
+                      <a><FaUser/> Update Profile</a>
+                    </li>
+                    <li>
+                      <a><FaBook/> Dashboard</a>
+                    </li>
+                    <li>
+                      <button className="text-white font-semibold btn btn-error">Logout</button>
+                    </li>
+                  </ul>
+                </details>
+              </div>
+            ) : (
+              <div className="flex items-center gap-x-1">
                 <Link to="/join">
                   <Button
                     variant="text"
@@ -159,6 +193,7 @@ const Nav = () => {
                   </Button>
                 </Link>
               </div>
+            )}
             <IconButton
               variant="text"
               className="ml-auto h-6 w-6 text-black hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -243,11 +278,10 @@ const Nav = () => {
               </Link>
             </div>
           )} */}
-          
-        </Collapse >
+        </Collapse>
       </Navbar>
     </div>
   );
 };
 
-export default Nav
+export default Nav;

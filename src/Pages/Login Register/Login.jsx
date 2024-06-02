@@ -6,7 +6,7 @@ import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
 import useData from '../../Hooks/useData';
 
-const Login = ({setLogin}) => {
+const Login = ({setLogin, setPlayed}) => {
 
   const {setUser} = useData();
   const { register, handleSubmit, formState: {errors} } = useForm();
@@ -27,6 +27,7 @@ const Login = ({setLogin}) => {
         
         <div className='flex-1 space-y-8 md:px-8 px-4'>
           <h1 className='text-4xl font-bold text-center'>Login</h1>
+          <p className='text-text text-center text-xl font-medium'>New here? <span onClick={() => {setLogin(false); setPlayed(true);}} className='font-semibold cursor-pointer text-theme'>Create a New Account</span></p>
           <form action="" className='flex-1' onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="" className='space-y-4'>
               <h3 className='text-xl font-semibold'>Email</h3>
@@ -42,7 +43,6 @@ const Login = ({setLogin}) => {
               <input type="submit" value='Login' className='w-full p-4 cursor-pointer bg-theme font-semibold rounded-lg text-base text-white mt-6'/>
             </label>
           </form>
-          <p className='text-theme text-center text-xl font-medium'>New here? <span onClick={() => setLogin(false)} className='font-semibold cursor-pointer'>Create a New Account</span></p>
           <p className='text-center text-xl font-medium'>Or sign in with</p>
           <div className='flex justify-center gap-10'>
             <div className='cursor-pointer text-2xl border border-[#444444] rounded-full p-3' onClick={() => onIconClick(googleProvider)}><FaGoogle/></div>
