@@ -7,7 +7,7 @@ import { RxCross1 } from 'react-icons/rx'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import useData from '../../Hooks/useData'
 import useAxios from '../../Hooks/useAxios'
-import SellerContents from './contents/SellerContents'
+import SellerContents from './contents/Seller contents/SellerContents'
 import { useQuery } from '@tanstack/react-query'
 
 const Dashboard = () => {
@@ -24,7 +24,7 @@ const Dashboard = () => {
   })
 
   return (
-    <div className='flex justify-start bg-[#F6F6F6]'>
+    <div className='flex justify-start bg-white'>
       <Toaster
         position="top-center"
         reverseOrder={false}

@@ -5,6 +5,8 @@ import Home from "../Pages/Home/Home";
 import App from "../App";
 import Join from "../Pages/Login Register/Join";
 import Dashboard from "../Pages/Dashboard/Dashboard";
+import SellerHome from "../Pages/Dashboard/contents/Seller contents/components/SellerHome";
+import ManageItems from "../Pages/Dashboard/contents/Seller contents/components/ManageItems";
 
 export const router = createBrowserRouter([
   {
@@ -26,7 +28,12 @@ export const router = createBrowserRouter([
     element: <Dashboard/>,
     children: [
       {
-        
+        path: '/dashboard/sellerhome',
+        element: <SellerHome/>
+      },
+      {
+        path: '/dashboard/manageitems',
+        element: <ManageItems/>
       }
     ]
   }

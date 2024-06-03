@@ -28,6 +28,7 @@ const Register = ({setLogin}) => {
 
   // form email password login
   const onSubmit = async(data) => {
+    console.log(data);
     // set spinner to true
     setSpinner(true);
     // host image on imgbb using its api
