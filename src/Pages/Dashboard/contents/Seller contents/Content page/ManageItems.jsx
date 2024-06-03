@@ -6,6 +6,7 @@ import useAxios from "../../../../../Hooks/useAxios";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
+import SellerTable from "../components/SellerTable";
 
 // imgbb api url
 const imgApi = import.meta.env.VITE_IMAGE_API;
@@ -13,14 +14,25 @@ const imgApiUrl = `https://api.imgbb.com/1/upload?key=${imgApi}`;
 
 const ManageItems = () => {
   const axiosSecure = useAxios();
+  const { user } = useData();
+  // load categories data
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const res = await axiosSecure.get("/categories");
       console.log(res.data);
-      return res.data[0]?.categories;
+      return res.data;
     },
   });
+
+  const {data:shopItems = []} = useQuery({
+    queryKey: ['shopItems'],
+    enabled: user != null,
+    queryFn: async() => {
+      const res = await axiosSecure.get(`/shop?id=${user.uid}`);
+      return res.data;
+    }
+  })
 
   const companies = [
     "Health Heaven",
@@ -38,9 +50,10 @@ const ManageItems = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const { user } = useData();
+
   const [spinner, setSpinner] = useState();
 
   const onSubmit = async (data) => {
@@ -68,13 +81,14 @@ const ManageItems = () => {
         company: data.company,
         imageURL: res.data?.data?.display_url,
         price: Number(data.price),
-        mass: Number(data.mass),
+        massUnit: data.unit,
         discount: Number(data.discount),
       };
       axiosSecure.post("/addtoshop", ItemData).then((res) => {
         if (res.data.insertedId) {
           setSpinner(false);
           toast.success("Item added successfully.");
+          reset();
           document.getElementById("my_modal_5").close();
         }
       });
@@ -82,19 +96,27 @@ const ManageItems = () => {
   };
 
   return (
-    <div className="w-full space-y-4 py-20">
+    <div className="w-11/12 mx-auto space-y-10 py-20">
       <DashboardSectionTitle title="Manage Your Medicines" />
 
       <div>
-        <button
-          onClick={() => document.getElementById("my_modal_5").showModal()}
-          className="p-4 rounded-lg font-semibold text-white bg-theme hover:bg-theme btn"
-        >
-          Add Medicine
-        </button>
+        <div className="flex justify-between items-center w-full">
+          <h1 className="text-2xl md:text-4xl boska font-semibold">Your Total Items: {shopItems.length}</h1>
+          {/* add medicine button */}
+          
+          <button
+            onClick={() => document.getElementById("my_modal_5").showModal()}
+            className="p-4 rounded-lg font-semibold text-white bg-theme hover:bg-theme btn"
+          >
+            Add Medicine
+          </button>
+        </div>
       </div>
 
       {/* a table will be here */}
+      <SellerTable items={shopItems}/>
+
+
 
       {/* modal */}
       {/* Open the modal using document.getElementById('ID').showModal() method */}
@@ -153,14 +175,13 @@ const ManageItems = () => {
               <h3 className="text-xl font-semibold mt-7">Category</h3>
               <select
                 className="w-full p-4 border-text border-b"
-                defaultValue="user"
                 {...register("category", { required: true })}
                 name="category"
                 id=""
               >
                 {categories.map((category, i) => (
-                  <option key={i} value={category}>
-                    {category}
+                  <option key={i} value={category?.categoryName}>
+                    {category?.categoryName}
                   </option>
                 ))}
               </select>
@@ -169,7 +190,6 @@ const ManageItems = () => {
               <h3 className="text-xl font-semibold mt-7">Company</h3>
               <select
                 className="w-full p-4 border-text border-b"
-                defaultValue="user"
                 {...register("company", { required: true })}
                 name="company"
                 id=""
@@ -180,7 +200,7 @@ const ManageItems = () => {
             <label htmlFor="" className="space-y-4">
               <h3 className="text-xl font-semibold mt-7">Item Mass Unit(mg/ml)</h3>
               <select {...register("unit", { required: true })}
-                className="focus:border-b focus:border-theme focus:outline-none border-b border-black w-full pl-4 py-4 text-base font-normal"
+                className="w-full p-4 border-text border-b"
               >
                 <option value="mg">mg</option>
                 <option value="ml">ml</option>

@@ -5,8 +5,8 @@ import Home from "../Pages/Home/Home";
 import App from "../App";
 import Join from "../Pages/Login Register/Join";
 import Dashboard from "../Pages/Dashboard/Dashboard";
-import SellerHome from "../Pages/Dashboard/contents/Seller contents/components/SellerHome";
-import ManageItems from "../Pages/Dashboard/contents/Seller contents/components/ManageItems";
+import SellerHome from "../Pages/Dashboard/contents/Seller contents/Content page/SellerHome";
+import ManageItems from "../Pages/Dashboard/contents/Seller contents/Content page/ManageItems";
 
 export const router = createBrowserRouter([
   {
