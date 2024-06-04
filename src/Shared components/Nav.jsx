@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { FaBook, FaShoppingCart, FaUser } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import useData from "../Hooks/useData";
+import useCart from "../Hooks/useCart";
 
 const Nav = () => {
   const { user, logOut } = useData();
@@ -21,6 +22,8 @@ const Nav = () => {
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
+
+  const [cart] = useCart();
 
   const navList = (
     <ul className="*:font-normal *:text-text *:text-xl mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -55,7 +58,7 @@ const Nav = () => {
           <div className="text-4xl relative">
             <FaShoppingCart />
             <div className="absolute top-0 -right-5 badge bg-theme text-white">
-              +12
+              +{cart.length}
             </div>
           </div>
         </NavLink>
