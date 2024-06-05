@@ -8,6 +8,7 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 import SellerHome from "../Pages/Dashboard/contents/Seller contents/Content page/SellerHome";
 import ManageItems from "../Pages/Dashboard/contents/Seller contents/Content page/ManageItems";
 import Shop from "../Pages/Shop/Shop";
+import ShopByCategory from "../Pages/Shop by category/ShopByCategory";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: '/shop', 
         element: <Shop/>
+      },
+      {
+        path: '/shop/:category',
+        element: <ShopByCategory/>
       },
       {
         path: '/join', 

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { FaBuilding, FaEye } from 'react-icons/fa';
 import { MdCategory } from 'react-icons/md';
-import useAxios from '../../../Hooks/useAxios';
-import useData from '../../../Hooks/useData';
+import useAxios from '../Hooks/useAxios';
+import useData from '../Hooks/useData';
 import toast from 'react-hot-toast';
-import useCart from '../../../Hooks/useCart';
+import useCart from '../Hooks/useCart';
 
 const Modal =({item, setShowModal}) => {
 
@@ -26,10 +26,10 @@ const Modal =({item, setShowModal}) => {
             <span className="font-normal text-base bg-theme rounded-full p-2 text-white flex items-center gap-2"><MdCategory/> {item?.category}</span>
             <span className="font-normal text-base bg-theme rounded-full p-2 text-white flex items-center gap-2"><FaBuilding/> {item?.company}</span>
           </div>
-          <h3 className="font-bold text-lg">Price: <span className='font-medium'>${item?.price}</span></h3>
+          <h3 className="font-bold text-lg">Price: {item?.discount ? <span className='text-red-300 line-through font-norma'>${item?.price * item?.discount/100 + item?.price}</span> : undefined}  <span className='font-medium'>${item?.price}</span></h3>
           <h3 className="font-bold text-lg">Mass Unit: <span className='font-medium'>{item?.massUnit}</span></h3>
           {/* discount show */}
-          {item?.discount ? <span className='bg-red-300 text-white font-normal absolute right-9 top-9 p-2'>{item?.discount}%</span> : undefined}
+          {item?.discount ? <span className='bg-red-300 text-white font-normal absolute right-9 top-9 p-2'>-{item?.discount}%</span> : undefined}
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}

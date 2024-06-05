@@ -1,7 +1,7 @@
 import React from 'react'
 import SectionTitle from '../../Shared components/SectionTitle'
-import ShopTable from './Components/ShopTable'
 import useShop from '../../Hooks/useShop'
+import ShopTable from '../../Shared components/ShopTable';
 
 const Shop = () => {
 

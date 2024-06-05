@@ -9,8 +9,45 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 // import required modules
 import { FreeMode, Navigation, Pagination } from "swiper/modules";
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../../../Hooks/useAxios";
+import useData from "../../../Hooks/useData";
+import toast from "react-hot-toast";
+import useCart from "../../../Hooks/useCart";
 
 const Slider = () => {
+  const axiosSecure = useAxios();
+  const {user} = useData();
+  const [, refetch] = useCart();
+  const {data:discounts=[]} = useQuery({
+    queryKey: ['discounts'],
+    queryFn: async() => {
+      const res = await axiosSecure.get(`/shop/discounts`)
+      return res.data;
+    }
+  })
+
+  const onAddClick = (addedItem) => {
+    const itemData = {
+      itemId: addedItem._id,
+      sellerUid: addedItem.sellerUid,
+      itemName: addedItem.itemName,
+      category: addedItem.category,
+      imageURL: addedItem.imageURL,
+      price: addedItem.price,
+      discount: addedItem.discount,
+      quantity: 1,
+      userId: user?.uid
+    }
+    axiosSecure.post('/addcart', itemData)
+    .then(res => {
+      if(res.data.insertedId || res.data.modifiedCount) {
+        toast.success('Item added successfully.');
+        refetch();
+      }
+    })
+  }
+
   return (
     <Swiper
     slidesPerView={window.innerWidth > 750 ? 3 :'auto'}
@@ -22,64 +59,22 @@ const Slider = () => {
     modules={[FreeMode, Navigation, Pagination]}
     className="mySwiper h-96 w-full"
   >
-    <SwiperSlide>
-      <div className="cursor-pointer p-4 rounded-lg border shadow-lg hover:border-theme space-y-5">
-        <div className="size-52 mx-auto">
-          <img src="https://cdn01.pharmeasy.in/dam/products_otc/180461/venusia-max-intensive-moisturizing-cream-for-dry-to-very-dry-skin-repairs-smoothens-skin-150g-2-1686118239.jpg" alt="" className="object-contain h-auto"/>
-        </div>
-        <h1 className="text-start text-2xl font-semibold text-text">Venusia Max</h1>
-        <h1 className="text-start font-medium text-xl">$100 <span className="bg-theme text-white font-normal text-base p-2 ml-5">20% off</span></h1>
-      </div>
-    </SwiperSlide>
-    <SwiperSlide>
-      <div className="cursor-pointer p-4 rounded-lg border shadow-lg hover:border-theme space-y-5">
-        <div className="size-52 mx-auto">
-          <img src="https://www.albionbd.com/wp-content/uploads/2022/07/Paracetamol-Tablet-1.jpg" alt="" className="object-contain h-auto"/>
-        </div>
-        
-        <h1 className="text-start text-2xl font-semibold text-text">Venusia Max</h1>
-        <h1 className="text-start font-medium text-xl">$100 <span className="bg-theme text-white font-normal text-base p-2 ml-5">20% off</span></h1>
-      </div>
-    </SwiperSlide>
-    <SwiperSlide>
-      <div className="cursor-pointer p-4 rounded-lg border shadow-lg hover:border-theme space-y-5">
-        <div className="size-52 mx-auto">
-          <img src="https://m.media-amazon.com/images/I/516-R8BLz6L._SL1200_.jpg" alt="" className="object-contain h-auto w-full"/>
-        </div>
-        
-        <h1 className="text-start text-2xl font-semibold text-text">Venusia Max</h1>
-        <h1 className="text-start font-medium text-xl">$100 <span className="bg-theme text-white font-normal text-base p-2 ml-5">20% off</span></h1>
-      </div>
-    </SwiperSlide>
-    <SwiperSlide>
-      <div className="cursor-pointer p-4 rounded-lg border shadow-lg hover:border-theme space-y-5">
-        <div className="size-52 mx-auto">
-          <img src="https://cdn01.pharmeasy.in/dam/products_otc/180461/venusia-max-intensive-moisturizing-cream-for-dry-to-very-dry-skin-repairs-smoothens-skin-150g-2-1686118239.jpg" alt="" className="object-contain h-auto"/>
-        </div>
-        <h1 className="text-start text-2xl font-semibold text-text">Venusia Max</h1>
-        <h1 className="text-start font-medium text-xl">$100 <span className="bg-theme text-white font-normal text-base p-2 ml-5">20% off</span></h1>
-      </div>
-    </SwiperSlide>
-    <SwiperSlide>
-      <div className="cursor-pointer p-4 rounded-lg border shadow-lg hover:border-theme space-y-5">
-        <div className="size-52 mx-auto">
-          <img src="https://www.albionbd.com/wp-content/uploads/2022/07/Paracetamol-Tablet-1.jpg" alt="" className="object-contain h-auto"/>
-        </div>
-        
-        <h1 className="text-start text-2xl font-semibold text-text">Venusia Max</h1>
-        <h1 className="text-start font-medium text-xl">$100 <span className="bg-theme text-white font-normal text-base p-2 ml-5">20% off</span></h1>
-      </div>
-    </SwiperSlide>
-    <SwiperSlide>
-      <div className="cursor-pointer p-4 rounded-lg border shadow-lg hover:border-theme space-y-5">
-        <div className="size-52 mx-auto">
-          <img src="https://m.media-amazon.com/images/I/516-R8BLz6L._SL1200_.jpg" alt="" className="object-contain h-auto w-full"/>
-        </div>
-        
-        <h1 className="text-start text-2xl font-semibold text-text">Venusia Max</h1>
-        <h1 className="text-start font-medium text-xl">$100 <span className="bg-theme text-white font-normal text-base p-2 ml-5">20% off</span></h1>
-      </div>
-    </SwiperSlide>
+    {discounts.map((discount, i) => {
+      return (
+        <SwiperSlide key={i}>
+          <div className="cursor-pointer p-4 rounded-lg border shadow-lg hover:border-theme space-y-5">
+            <div className="size-52 mx-auto">
+              <img src={discount?.imageURL} alt="" className="object-contain h-auto"/>
+            </div>
+            <h1 className="text-start text-2xl font-semibold text-text">{discount?.itemName}</h1>
+            <h1 className="text-start font-medium text-xl"><span className="line-through font-normal text-red-300">${discount?.price * discount?.discount/100 + discount?.price}</span>  <span>${discount?.price}</span> <span className="bg-theme text-white font-normal text-base p-2 ml-5">-{discount?.discount}% off</span></h1>
+
+            <div className="flex w-full flex-col"><button onClick={() => onAddClick(discount)} className="bg-theme text-white font-semibold p-3 btn hover:bg-theme">Add to cart</button></div>
+          </div>
+        </SwiperSlide>
+      )
+    })}
+
   </Swiper>
   )
 };

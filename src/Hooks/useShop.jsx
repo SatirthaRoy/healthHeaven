@@ -15,7 +15,6 @@ const useShop = () => {
       return res.data;
     }
   })
-  console.log(shopItems);
   return shopItems
 }
 
