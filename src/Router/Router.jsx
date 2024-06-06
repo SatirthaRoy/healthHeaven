@@ -10,6 +10,9 @@ import ManageItems from "../Pages/Dashboard/contents/Seller contents/Content pag
 import Shop from "../Pages/Shop/Shop";
 import ShopByCategory from "../Pages/Shop by category/ShopByCategory";
 import Cart from "../Pages/Cart/Cart";
+import Checkout from "../Pages/Checkout/Checkout";
+import Private from "../Private";
+import PaymentHistory from "../Pages/Dashboard/contents/User contents/Content page/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -22,7 +25,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/cart',
-        element: <Cart/>
+        element:<Private><Cart/></Private> 
       },
       {
         path: '/shop', 
@@ -33,6 +36,10 @@ export const router = createBrowserRouter([
         element: <ShopByCategory/>
       },
       {
+        path: '/checkout',
+        element:<Private><Checkout/></Private>
+      },
+      {
         path: '/join', 
         element: <Join/>
       }
@@ -40,8 +47,12 @@ export const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <Dashboard/>,
+    element:<Private><Dashboard/></Private>,
     children: [
+      {
+        path: '/dashboard/paymenthistory',
+        element: <PaymentHistory/>
+      },
       {
         path: '/dashboard/sellerhome',
         element: <SellerHome/>

@@ -14,10 +14,12 @@ import useAxios from "../../../Hooks/useAxios";
 import useData from "../../../Hooks/useData";
 import toast from "react-hot-toast";
 import useCart from "../../../Hooks/useCart";
+import { useNavigate } from "react-router-dom";
 
 const Slider = () => {
   const axiosSecure = useAxios();
   const {user} = useData();
+  const navigate = useNavigate();
   const [, refetch] = useCart();
   const {data:discounts=[]} = useQuery({
     queryKey: ['discounts'],
@@ -28,6 +30,9 @@ const Slider = () => {
   })
 
   const onAddClick = (addedItem) => {
+    if(!user) {
+      return navigate('/join')
+    }
     const itemData = {
       itemId: addedItem._id,
       sellerUid: addedItem.sellerUid,

@@ -11,6 +11,7 @@ import { FaBook, FaShoppingCart, FaUser } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import useData from "../Hooks/useData";
 import useCart from "../Hooks/useCart";
+import useRole from "../Hooks/useRole";
 
 const Nav = () => {
   const { user, logOut } = useData();
@@ -24,6 +25,7 @@ const Nav = () => {
   }, []);
 
   const [cart] = useCart();
+  const role = useRole();
 
   const navList = (
     <ul className="*:font-normal *:text-text *:text-xl mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -111,7 +113,7 @@ const Nav = () => {
                       </a>
                     </li>
                     <li>
-                      <NavLink to='/dashboard'
+                      <NavLink to={`/dashboard/${role === 'user' ? 'paymenthistory' : ''}${role === 'seller' ? 'sellerhome' : ''}${role === 'admin' ? 'adminhome' : ''}`}
                         className={({ isActive }) =>
                           isActive
                             ? `flex items-center text-theme`

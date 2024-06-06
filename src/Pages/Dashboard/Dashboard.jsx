@@ -4,24 +4,22 @@ import { FaHome, FaShoppingBag } from 'react-icons/fa'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { MdEmail } from 'react-icons/md'
 import { RxCross1 } from 'react-icons/rx'
-import { NavLink, Outlet, useNavigate } from 'react-router-dom'
-import useData from '../../Hooks/useData'
-import useAxios from '../../Hooks/useAxios'
+import { NavLink, Outlet } from 'react-router-dom'
 import SellerContents from './contents/Seller contents/SellerContents'
-import { useQuery } from '@tanstack/react-query'
+import Usercontents from './contents/User contents/Usercontents'
+import useRole from '../../Hooks/useRole'
 
 const Dashboard = () => {
-  const axiosSecure = useAxios();
-  const {user} = useData();
 
-  const {data:role=''} = useQuery({
-    queryKey: ['role'],
-    enabled: user != null,
-    queryFn: async() => {
-      const res = await axiosSecure.get(`/users?id=${user?.uid}`)
-      return res.data?.role;
-    }
-  })
+  // const {data:role=''} = useQuery({
+  //   queryKey: ['role'],
+  //   enabled: user != null,
+  //   queryFn: async() => {
+  //     const res = await axiosSecure.get(`/users?id=${user?.uid}`)
+  //     return res.data?.role;
+  //   }
+  // })
+  const role = useRole();
 
   return (
     <div className='flex justify-start bg-white'>
@@ -46,6 +44,7 @@ const Dashboard = () => {
             {/* add dashboard content according to role */}
             {/* {admin ? <AdminContent/> : <UserContent/>} */}
             { role === 'seller' && <SellerContents/> }
+            {role === 'user' && <Usercontents/>}
             {/* navigations */}
             <div className='divider before:bg-white after:bg-white'></div>
             <NavLink to='/' className={({isActive}) => isActive ? 'text-white cinzel flex gap-4 items-center text-base' : `cinzel flex gap-4 items-center text-base`}><FaHome className='text-2xl'/>home</NavLink>

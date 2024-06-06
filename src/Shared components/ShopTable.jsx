@@ -5,6 +5,7 @@ import useAxios from '../Hooks/useAxios';
 import useData from '../Hooks/useData';
 import toast from 'react-hot-toast';
 import useCart from '../Hooks/useCart';
+import { useNavigate } from 'react-router-dom';
 
 const Modal =({item, setShowModal}) => {
 
@@ -51,11 +52,15 @@ const Modal =({item, setShowModal}) => {
 
 const ShopTable = ({items}) => {
   const [itemData, setItemData] = useState({});
+  const navigate = useNavigate();
   const {user} = useData();
   const [showModal, setShowModal] = useState(false);
   const axiosSecure = useAxios();
   const [,refetch] = useCart();
   const onAddClick = (addedItem) => {
+    if(!user) {
+      return navigate('/join')
+    }
     const itemData = {
       itemId: addedItem._id,
       sellerUid: addedItem.sellerUid,
