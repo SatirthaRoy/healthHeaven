@@ -9,6 +9,7 @@ import SellerHome from "../Pages/Dashboard/contents/Seller contents/Content page
 import ManageItems from "../Pages/Dashboard/contents/Seller contents/Content page/ManageItems";
 import Shop from "../Pages/Shop/Shop";
 import ShopByCategory from "../Pages/Shop by category/ShopByCategory";
+import Cart from "../Pages/Cart/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home/>
+      },
+      {
+        path: '/cart',
+        element: <Cart/>
       },
       {
         path: '/shop', 

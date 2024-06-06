@@ -50,16 +50,16 @@ const Nav = () => {
       </Typography>
       <Typography as="li" variant="small" color="blue-gray" className="p-1">
         <NavLink
-          to="/dashboard/mycart"
+          to="/cart"
           className={({ isActive }) =>
             isActive ? `flex items-center text-theme` : `flex items-center`
           }
         >
-          <div className="text-4xl relative">
+          <div className="text-3xl relative">
             <FaShoppingCart />
-            <div className="absolute top-0 -right-5 badge bg-theme text-white">
+            {cart.length ? <div className="absolute top-0 -right-5 badge bg-theme text-white">
               +{cart.length}
-            </div>
+            </div> : undefined}
           </div>
         </NavLink>
       </Typography>
