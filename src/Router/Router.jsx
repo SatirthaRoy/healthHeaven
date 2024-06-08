@@ -19,6 +19,9 @@ import ManageUsers from "../Pages/Dashboard/contents/Admin contents/Contents/Man
 import ManageCategory from "../Pages/Dashboard/contents/Admin contents/Contents/ManageCategory";
 import PaymentManagement from "../Pages/Dashboard/contents/Admin contents/Contents/PaymentManagement";
 import SalesReport from "../Pages/Dashboard/contents/Admin contents/Contents/SalesReport";
+import ManageAdvertise from "../Pages/Dashboard/contents/Admin contents/Contents/ManageAdvertise";
+import SoldHistory from "../Pages/Dashboard/contents/Seller contents/Content page/SoldHistory";
+import Advertisement from "../Pages/Dashboard/contents/Seller contents/Content page/Advertisement";
 
 export const router = createBrowserRouter([
   {
@@ -76,6 +79,14 @@ export const router = createBrowserRouter([
         element: <ManageItems/>
       },
       {
+        path: '/dashboard/soldhistory',
+        element: <SoldHistory/>
+      },
+      {
+        path: '/dashboard/advertisement',
+        element: <Advertisement/>
+      },
+      {
         path: '/dashboard/manageusers',
         element: <ManageUsers/>
       },
@@ -90,6 +101,10 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/report',
         element: <SalesReport/>
+      },
+      {
+        path: '/dashboard/advertise',
+        element: <ManageAdvertise/>
       }
     ]
   }

@@ -200,7 +200,7 @@ const ManageCategory = () => {
 
   return (
     <div className='w-11/12 mx-auto space-y-9'>
-      <h1 className='text-6xl font-bold boska'>Manage Categories</h1>
+      <h1 className='text-6xl font-bold boska text-center'>Manage Categories</h1>
       <button onClick={() => document.getElementById('my_modal_11').showModal()} className='text-white bg-theme btn hover:bg-theme flex items-center'><MdCategory/>Add Category</button>
       <div>
         <table className="w-full rounded-tr-3xl rounded-tl-3xl">
@@ -245,7 +245,7 @@ const ManageCategory = () => {
               <input
                 type="text"
                 {...register("categoryName", { required: true })}
-                placeholder="Enter item name"
+                placeholder="Enter category name"
                 className="focus:outline-none focus:border-b focus:border-theme border-b border-b-black w-full pl-4 py-4 text-base font-normal"
               />
               {errors.categoryName?.type === "required" && (

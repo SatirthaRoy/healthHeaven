@@ -18,7 +18,7 @@ const PaymentManagement = () => {
 
   return (
     <div className='w-11/12 mx-auto mt-20 space-y-10'>
-      <h1 className='text-6xl font-bold boska'>Payment Management</h1>
+      <h1 className='text-6xl font-bold boska text-center'>Payment Management</h1>
       <div>
         <table className="w-full rounded-tr-3xl rounded-tl-3xl">
           {/* head */}

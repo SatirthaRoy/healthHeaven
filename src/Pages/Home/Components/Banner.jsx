@@ -7,8 +7,22 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
+import useAxios from '../../../Hooks/useAxios';
+import { useQuery } from '@tanstack/react-query';
 
 const Banner = () => {
+
+  const axiosSecure = useAxios();
+  const {data:addedAds=[]} = useQuery({
+    queryKey:['addedAds'],
+    queryFn: async() => {
+      const res = await axiosSecure.get('/addedAds');
+      return res.data;
+    }
+  })
+
+  console.log(addedAds);
+
   return (
     <div className='w-11/12 mx-auto h-[75vh] mt-44 rounded-3xl'>
       <Swiper
@@ -19,15 +33,13 @@ const Banner = () => {
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <img src="https://png.pngtree.com/png-clipart/20230519/original/pngtree-vegetables-and-fruits-health-products-medical-industry-web-banner-png-image_9164845.png" alt=""/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://png.pngtree.com/png-clipart/20230519/original/pngtree-vegetables-and-fruits-health-products-medical-industry-web-banner-png-image_9164845.png" alt=""/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://png.pngtree.com/png-clipart/20230519/original/pngtree-vegetables-and-fruits-health-products-medical-industry-web-banner-png-image_9164845.png" alt=""/>
-        </SwiperSlide>
+        {addedAds.map((ad, i) => {
+          return (
+            <SwiperSlide key={i}>
+              <img src={ad?.AdImage} alt=""/>
+            </SwiperSlide>
+          )
+        })}
       </Swiper>
     </div>
   )

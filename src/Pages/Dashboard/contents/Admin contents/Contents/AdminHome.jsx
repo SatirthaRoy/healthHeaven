@@ -8,7 +8,7 @@ const AdminHome = () => {
   const pendingCount = payments.length - paidCount;
   return (
     <div className='w-11/12 mx-auto space-y-10'>
-      <h1 className='text-6xl boska font-bold'>Admin's Home</h1>
+      <h1 className='text-6xl boska font-bold text-center'>Admin's Home</h1>
 
       <table className="w-full rounded-tr-3xl rounded-tl-3xl">
         {/* head */}

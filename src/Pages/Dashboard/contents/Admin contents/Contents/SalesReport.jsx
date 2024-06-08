@@ -23,7 +23,7 @@ const SalesReport = () => {
 
   return (
     <div className='w-11/12 mx-auto mt-20 space-y-9'>
-      <h1 className='text-6xl boska font-bold'>Sales Report</h1>
+      <h1 className='text-6xl boska font-bold text-center'>Sales Report</h1>
       <button onClick={generatePdf} className='btn bg-theme hover:bg-theme text-white'><FaPrint/> Print</button>
       <div className='overflow-x-scroll'>
         <table ref={componentToPrint} className="w-full rounded-tr-3xl rounded-tl-3xl">
