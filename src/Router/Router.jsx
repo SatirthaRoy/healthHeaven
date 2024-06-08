@@ -16,6 +16,9 @@ import PaymentHistory from "../Pages/Dashboard/contents/User contents/Content pa
 import AdminHome from "../Pages/Dashboard/contents/Admin contents/Contents/AdminHome";
 import Invoice from "../Pages/Invoice/Invoice";
 import ManageUsers from "../Pages/Dashboard/contents/Admin contents/Contents/ManageUsers";
+import ManageCategory from "../Pages/Dashboard/contents/Admin contents/Contents/ManageCategory";
+import PaymentManagement from "../Pages/Dashboard/contents/Admin contents/Contents/PaymentManagement";
+import SalesReport from "../Pages/Dashboard/contents/Admin contents/Contents/SalesReport";
 
 export const router = createBrowserRouter([
   {
@@ -75,6 +78,18 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/manageusers',
         element: <ManageUsers/>
+      },
+      {
+        path: '/dashboard/managecategory',
+        element: <ManageCategory/>
+      },
+      {
+        path: '/dashboard/paymentmanage',
+        element: <PaymentManagement/>
+      },
+      {
+        path: '/dashboard/report',
+        element: <SalesReport/>
       }
     ]
   }

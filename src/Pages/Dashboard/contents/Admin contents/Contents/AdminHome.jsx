@@ -2,11 +2,10 @@ import React from 'react'
 import useGetPayments from '../../../../../Hooks/useGetPayments'
 
 const AdminHome = () => {
-  const payments = useGetPayments();
+  const [payments] = useGetPayments();
   const totalSell = payments.reduce((acc, curr) =>  curr.totalPrice + acc,0)
   const paidCount = payments.filter(p => p.status === 'paid').length;
   const pendingCount = payments.length - paidCount;
-  console.log(payments);
   return (
     <div className='w-11/12 mx-auto space-y-10'>
       <h1 className='text-6xl boska font-bold'>Admin's Home</h1>

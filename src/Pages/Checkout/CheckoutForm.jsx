@@ -71,6 +71,7 @@ const CheckoutForm = ({totalPrice}) => {
         // payment management data
         const paymentManagementData = {
           transactionId: paymentIntent.id,
+          userId: user?.uid,
           status: 'pending',
           totalPrice: totalPrice,
           cartItems: cart.map(cartItem => {
