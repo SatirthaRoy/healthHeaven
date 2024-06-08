@@ -15,6 +15,7 @@ import Private from "../Private";
 import PaymentHistory from "../Pages/Dashboard/contents/User contents/Content page/PaymentHistory";
 import AdminHome from "../Pages/Dashboard/contents/Admin contents/Contents/AdminHome";
 import Invoice from "../Pages/Invoice/Invoice";
+import ManageUsers from "../Pages/Dashboard/contents/Admin contents/Contents/ManageUsers";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/manageitems',
         element: <ManageItems/>
+      },
+      {
+        path: '/dashboard/manageusers',
+        element: <ManageUsers/>
       }
     ]
   }
