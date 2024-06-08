@@ -13,6 +13,8 @@ import Cart from "../Pages/Cart/Cart";
 import Checkout from "../Pages/Checkout/Checkout";
 import Private from "../Private";
 import PaymentHistory from "../Pages/Dashboard/contents/User contents/Content page/PaymentHistory";
+import AdminHome from "../Pages/Dashboard/contents/Admin contents/Contents/AdminHome";
+import Invoice from "../Pages/Invoice/Invoice";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +42,10 @@ export const router = createBrowserRouter([
         element:<Private><Checkout/></Private>
       },
       {
+        path: '/invoice/:transactionId',
+        element: <Private><Invoice/></Private>
+      },
+      {
         path: '/join', 
         element: <Join/>
       }
@@ -52,6 +58,10 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/paymenthistory',
         element: <PaymentHistory/>
+      },
+      {
+        path: '/dashboard/adminhome',
+        element: <AdminHome/>
       },
       {
         path: '/dashboard/sellerhome',

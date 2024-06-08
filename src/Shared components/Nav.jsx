@@ -116,8 +116,7 @@ const Nav = () => {
                       <NavLink to={`/dashboard/${role === 'user' ? 'paymenthistory' : ''}${role === 'seller' ? 'sellerhome' : ''}${role === 'admin' ? 'adminhome' : ''}`}
                         className={({ isActive }) =>
                           isActive
-                            ? `flex items-center text-theme`
-                            : `flex items-center`
+                            ? `flex items-center text-theme` : `flex items-center`
                         }
                       >
                         <FaBook /> Dashboard
