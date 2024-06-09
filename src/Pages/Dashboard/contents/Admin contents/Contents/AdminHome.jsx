@@ -9,7 +9,7 @@ const AdminHome = () => {
   const pending = payments.filter(p => p.status === 'pending');
   const pendingTotal = pending.reduce((acc, curr) =>  curr.totalPrice + acc,0);
   return (
-    <div className='w-11/12 mx-auto space-y-10'>
+    <div className='w-11/12 mx-auto space-y-10 mt-20'>
       <h1 className='text-6xl boska font-bold text-center'>Admin's Home</h1>
 
       <table className="w-full rounded-tr-3xl rounded-tl-3xl">

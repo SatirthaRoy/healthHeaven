@@ -23,7 +23,7 @@ const ManageAdvertise = () => {
   }
 
   return (
-    <div className='w-11/12 mx-auto  mt-20 space-y-10'>
+    <div className='w-11/12 mx-auto  mt-20 space-y-10 mt-20'>
       <h1 className='text-6xl font-bold boska text-center'>Manage Ads</h1>
       <div className='overflow-x-scroll'>
         <table className="w-full rounded-tr-3xl rounded-tl-3xl">

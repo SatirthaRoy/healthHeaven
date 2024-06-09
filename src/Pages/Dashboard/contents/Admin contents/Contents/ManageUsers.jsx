@@ -16,7 +16,7 @@ const ManageUsers = () => {
   })
 
   return (
-    <div className='w-11/12 mx-auto space-y-9'>
+    <div className='w-11/12 mx-auto space-y-9 mt-20'>
       <h1 className='text-6xl font-bold boska'>Manage Users</h1>
       <div>
       <table className="w-full rounded-tr-3xl rounded-tl-3xl">

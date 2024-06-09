@@ -199,7 +199,7 @@ const ManageCategory = () => {
 
 
   return (
-    <div className='w-11/12 mx-auto space-y-9'>
+    <div className='w-11/12 mx-auto space-y-9 mt-20'>
       <h1 className='text-6xl font-bold boska text-center'>Manage Categories</h1>
       <button onClick={() => document.getElementById('my_modal_11').showModal()} className='text-white bg-theme btn hover:bg-theme flex items-center'><MdCategory/>Add Category</button>
       <div>
