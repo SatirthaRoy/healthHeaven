@@ -17,8 +17,8 @@ const Modal =({item, setShowModal}) => {
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box relative space-y-6">
-          <div className='max-h-80 max-w-80 mx-auto'>
-            <img src={item?.imageURL} alt="" className='object-cover w-full'/>
+          <div className='mx-auto'>
+            <img src={item?.imageURL} alt="" className='object-cover max-w-64 mx-auto'/>
           </div>
           <h3 className="font-bold text-lg">{item?.itemName}</h3>
           <h3 className="font-bold text-lg">Generic: <span className='font-medium'>{item?.genericName}</span></h3>
