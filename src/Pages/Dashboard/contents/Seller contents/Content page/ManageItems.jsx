@@ -25,7 +25,7 @@ const ManageItems = () => {
     },
   });
 
-  const {data:shopItems = []} = useQuery({
+  const {data:shopItems = [], refetch} = useQuery({
     queryKey: ['shopItems'],
     enabled: user != null,
     queryFn: async() => {
@@ -90,6 +90,7 @@ const ManageItems = () => {
           toast.success("Item added successfully.");
           reset();
           document.getElementById("my_modal_5").close();
+          refetch();
         }
       });
     }

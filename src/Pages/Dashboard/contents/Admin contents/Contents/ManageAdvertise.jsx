@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useAxios from '../../../../../Hooks/useAxios'
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
 const ManageAdvertise = () => {
@@ -13,6 +13,12 @@ const ManageAdvertise = () => {
     }
   })
 
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    return () => queryClient.removeQueries({queryKey: ['ads']})
+  }, [queryClient])
+
   const toggleAdded = (id) => {
     axiosSecure.patch(`/adstoggle/${id}`, {})
     .then(res => {
@@ -23,7 +29,7 @@ const ManageAdvertise = () => {
   }
 
   return (
-    <div className='w-11/12 mx-auto  mt-20 space-y-10 mt-20'>
+    <div className='w-11/12 mx-auto space-y-10 mt-20'>
       <h1 className='text-6xl font-bold boska text-center'>Manage Ads</h1>
       <div className='overflow-x-scroll'>
         <table className="w-full rounded-tr-3xl rounded-tl-3xl">

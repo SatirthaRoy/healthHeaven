@@ -40,13 +40,6 @@ const Modal =({item, setShowModal}) => {
         </div>
       </dialog>
     </div>
-    // <div className='fixed -translate-y-1/3 translate-x-1/2 w-11/12 h-2/3 overflow-y-scroll bg-white border top-1/2 right-1/2 rounded-3xl '>
-    //   <div className='relative p-5 w-full h-full bg-theme bg-opacity-20'>
-    //     <h1 className='text-4xl text-text font-semibold'>{item?.itemName}</h1>
-
-    //     <button className='absolute right-4 top-4 text-2xl btn'><RxCross1/></button>
-    //   </div>
-    // </div>
   )
 }
 
@@ -82,8 +75,23 @@ const ShopTable = ({items}) => {
     })
   }
 
+  const [sort, setSort] = useState('default');
+
+  let sortedItems = items;
+
+  if(sort === 'price') {
+    sortedItems = items.toSorted((a, b) => a.price - b.price);
+  }
+
   return (
     <>
+      <div className='flex justify-end gap-4 items-center mb-4'>
+        <h2 className='font-semibold text-lg'>Sort By: </h2>
+        <select onChange={e => setSort(e.target.value)} value={sort} className='p-2 bg-theme bg-opacity-15 rounded-md'>
+          <option value="default">Default</option>
+          <option value="price">Price</option>
+        </select>
+      </div>
       <table className="w-full rounded-tr-3xl rounded-tl-3xl">
         {/* head */}
         <tbody className="bg-theme rounded-tr-full rounded-tl-3xl">
@@ -97,7 +105,7 @@ const ShopTable = ({items}) => {
         </tbody>
         <tbody className="divide-y">
           {/* row 1 */}
-          {items.map((item, i) => {
+          {sortedItems.map((item, i) => {
             return (
               <>
                 <tr key={i} className="*:p-3">
