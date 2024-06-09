@@ -1,8 +1,28 @@
-# React + Vite
+# Health Heaven
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Live Site](https://health-heaven.web.app/)
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **User Authentication**
+   - Secure sign-up and log-in processes with email verification.
+   - Password recovery options and multi-factor authentication for enhanced security.
+
+2. **Responsive Design**
+   - Fully responsive design ensuring optimal user experience on desktop, tablet, and mobile devices.
+   - Utilizes modern CSS frameworks and techniques for adaptive layouts.
+
+3. **Interactive Dashboard**
+   - Comprehensive user dashboard providing insights, statistics, and user-specific data.
+   - Real-time updates and customizable widgets to tailor the user experience.
+
+4. **E-commerce Integration**
+   - Seamless integration with major payment gateways such as stripe for smooth transactions.
+   - Detailed product listings, shopping cart, and order management system.
+
+5. **Social Media Integration**
+   - Allows users to log in using their social media accounts and share content effortlessly.
+
+---
+
+

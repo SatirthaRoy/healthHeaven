@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import useData from './useData';
 import useAxios from './useAxios';
 
 const useShop = () => {
