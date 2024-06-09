@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
-import { FaHome, FaShoppingBag } from 'react-icons/fa'
+import { FaHome, FaUser } from 'react-icons/fa'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { MdEmail } from 'react-icons/md'
 import { RxCross1 } from 'react-icons/rx'
@@ -9,21 +8,17 @@ import SellerContents from './contents/Seller contents/SellerContents'
 import Usercontents from './contents/User contents/Usercontents'
 import useRole from '../../Hooks/useRole'
 import AdminContents from './contents/Admin contents/AdminContents'
+import HelemetTitle from '../../Shared components/HelemetTitle'
+import { CiLogout } from 'react-icons/ci'
+import useData from '../../Hooks/useData'
 
 const Dashboard = () => {
 
-  // const {data:role=''} = useQuery({
-  //   queryKey: ['role'],
-  //   enabled: user != null,
-  //   queryFn: async() => {
-  //     const res = await axiosSecure.get(`/users?id=${user?.uid}`)
-  //     return res.data?.role;
-  //   }
-  // })
-  const role = useRole();
-
+  const [role] = useRole();
+  const {logOut} = useData();
   return (
     <div className='flex justify-start bg-white'>
+      <HelemetTitle title='Dashboard || HH'/>
       <Toaster
         position="top-center"
         reverseOrder={false}
@@ -49,10 +44,9 @@ const Dashboard = () => {
             {role === 'admin' && <AdminContents/>}
             {/* navigations */}
             <div className='divider before:bg-white after:bg-white'></div>
-            <NavLink to='/' className={({isActive}) => isActive ? 'text-white cinzel flex gap-4 items-center text-base' : `cinzel flex gap-4 items-center text-base`}><FaHome className='text-2xl'/>home</NavLink>
-            <NavLink to='/menu' className={({isActive}) => isActive ? 'text-white cinzel flex gap-4 items-center text-base' : `cinzel flex gap-4 items-center text-base`}><GiHamburgerMenu className='text-2xl'/>menu</NavLink>
-            <NavLink to='/shop' className={({isActive}) => isActive ? 'text-white cinzel flex gap-4 items-center text-base' : `cinzel flex gap-4 items-center text-base`}><FaShoppingBag className='text-2xl' />shop</NavLink>
-            <NavLink  className={({isActive}) => isActive ? 'text-white cinzel flex gap-4 items-center text-base' : `cinzel flex gap-4 items-center text-base`}><MdEmail className='text-2xl'/>contact</NavLink>
+            <NavLink to='/' className={({isActive}) => isActive ? 'text-white cinzel flex gap-4 items-center text-base' : `cinzel flex gap-4 items-center text-base`}><FaHome className='text-2xl'/>Home</NavLink>
+            <NavLink to='/updateprofile' className={({isActive}) => isActive ? 'text-white cinzel flex gap-4 items-center text-base' : `cinzel flex gap-4 items-center text-base`}><FaUser className='text-2xl'/>Update Profile</NavLink>
+            <button onClick={logOut} className={`flex gap-4 items-center text-base`}><CiLogout className='text-2xl' />Logout</button>
           </ul>
         
         </div>

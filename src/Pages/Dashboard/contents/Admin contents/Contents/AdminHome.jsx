@@ -4,8 +4,10 @@ import useGetPayments from '../../../../../Hooks/useGetPayments'
 const AdminHome = () => {
   const [payments] = useGetPayments();
   const totalSell = payments.reduce((acc, curr) =>  curr.totalPrice + acc,0)
-  const paidCount = payments.filter(p => p.status === 'paid').length;
-  const pendingCount = payments.length - paidCount;
+  const paid = payments.filter(p => p.status === 'paid');
+  const paidTotal = paid.reduce((acc, curr) =>  curr.totalPrice + acc,0);
+  const pending = payments.filter(p => p.status === 'pending');
+  const pendingTotal = pending.reduce((acc, curr) =>  curr.totalPrice + acc,0);
   return (
     <div className='w-11/12 mx-auto space-y-10'>
       <h1 className='text-6xl boska font-bold text-center'>Admin's Home</h1>
@@ -23,8 +25,8 @@ const AdminHome = () => {
           {/* row 1 */}
           <tr className="*:p-3">
             <td className="text-base">${totalSell}</td>
-            <td className="text-base">{paidCount}</td>
-            <td className="text-base">{pendingCount}</td>
+            <td className="text-base">${paidTotal}</td>
+            <td className="text-base">${pendingTotal}</td>
           </tr>
         </tbody>
       </table>

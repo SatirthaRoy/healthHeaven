@@ -163,8 +163,8 @@ const ManageCategory = () => {
         if (res.data.insertedId) {
           setSpinner(false);
           toast.success("Item added successfully.");
-          document.getElementById("my_modal_10").close();
           refetch();
+          document.getElementById("my_modal_10").close();
         }
       });
     }

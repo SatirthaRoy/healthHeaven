@@ -47,7 +47,7 @@ const SalesReport = () => {
                       <td className="text-xs md:text-base">{item.itemName}</td>
                       <td className="text-xs md:text-base">{item?.sellerUid}</td>
                       <td className={`text-xs md:text-base`}>{item?.userId}</td>
-                      <td className="text-xs md:text-base">${item?.price}</td>
+                      <td className="text-xs md:text-base">${item?.price}x{item?.quantity}</td>
                     </tr>
                   </>
                 );

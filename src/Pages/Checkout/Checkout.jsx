@@ -3,6 +3,7 @@ import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 import CheckoutForm from './CheckoutForm'
 import useCart from '../../Hooks/useCart'
+import HelemetTitle from '../../Shared components/HelemetTitle'
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY)
@@ -15,6 +16,7 @@ const Checkout = () => {
 
   return (
     <div className='mt-40 w-11/12 mx-auto space-y-10'>
+      <HelemetTitle title='Checkout || HH'/>
       {/* <SectionTitle title='Checkout'/> */}
       <h1 className='text-4xl md:text-7xl font-semibold boska text-center'>Checkout</h1>
       <div className='md:w-1/2 w-11/12 mx-auto border border-theme rounded-xl p-8 bg-theme bg-opacity-5 space-y-10'>

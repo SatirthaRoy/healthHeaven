@@ -1,6 +1,7 @@
 import React from 'react'
 import useData from './Hooks/useData'
 import { Navigate } from 'react-router-dom'
+import { Spinner } from '@material-tailwind/react'
 
 const Private = ({children}) => {
 
@@ -8,7 +9,9 @@ const Private = ({children}) => {
 
 
   if(loading) {
-    return <div className='text-5xl'>LOADING</div>
+    return <div className='grid place-content-center mt-40'>
+      <Spinner color="blue" className='size-44'/>
+    </div>
   }
 
   if(user) {

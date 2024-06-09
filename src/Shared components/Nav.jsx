@@ -25,7 +25,7 @@ const Nav = () => {
   }, []);
 
   const [cart] = useCart();
-  const role = useRole();
+  const [role] = useRole();
 
   const navList = (
     <ul className="*:font-normal *:text-text *:text-xl mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -108,9 +108,9 @@ const Nav = () => {
                   </summary>
                   <ul className="p-2 -left-20 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-40">
                     <li>
-                      <a>
+                      <NavLink to='/updateprofile'>
                         <FaUser /> Update Profile
-                      </a>
+                      </NavLink>
                     </li>
                     <li>
                       <NavLink to={`/dashboard/${role === 'user' ? 'paymenthistory' : ''}${role === 'seller' ? 'sellerhome' : ''}${role === 'admin' ? 'adminhome' : ''}`}

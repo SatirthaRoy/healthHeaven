@@ -2,6 +2,7 @@ import React, {useState } from 'react'
 import Login from './Login'
 import Register from './Register'
 import {AnimatePresence, motion} from 'framer-motion'
+import HelemetTitle from '../../Shared components/HelemetTitle'
 
 
 const Join = () => {
@@ -30,6 +31,7 @@ const Join = () => {
 
   return (
     <div className='mt-40'>
+      <HelemetTitle title='Join || HH'/>
       <h1 className='boska text-6xl text-center font-semibold text-theme mb-10'>JOIN US</h1>
       <motion.div className='clippy overflow-hidden bg-theme rounded-3xl'>
         <AnimatePresence mode='popLayout'>

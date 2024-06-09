@@ -4,6 +4,7 @@ import useAxios from '../../Hooks/useAxios';
 import useData from '../../Hooks/useData';
 import { useQuery } from '@tanstack/react-query';
 import { useReactToPrint } from 'react-to-print';
+import HelemetTitle from '../../Shared components/HelemetTitle';
 
 const Invoice = () => {
   const {transactionId} = useParams();
@@ -27,6 +28,7 @@ const Invoice = () => {
 
   return (
     <div className='mt-40 w-11/12 mx-auto'>
+      <HelemetTitle title='Invoice || HH'/>
       <h1 className='text-6xl font-bold boska text-center'>INVOICE</h1>
       {/* print this */}
       <div ref={componentToPrint} className='pt-28'>

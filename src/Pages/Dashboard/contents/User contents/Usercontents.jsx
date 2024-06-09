@@ -7,7 +7,7 @@ const Usercontents = () => {
   return (
     <>
       <NavLink to='/dashboard/paymenthistory' className={({isActive}) => isActive ? 'underline flex gap-4 items-center text-base text-white' : `text-white flex gap-4 items-center text-base`}><MdOutlinePayments className='text-2xl'/>Payment History</NavLink>
-      <NavLink to='/dashboard/mycart' className={({isActive}) => isActive ? 'underline flex gap-4 items-center text-base text-white' : `text-white flex gap-4 items-center text-base`}><FaQuestionCircle className='text-2xl'/>My Queries</NavLink>
+      <NavLink to='/dashboard/queries' className={({isActive}) => isActive ? 'underline flex gap-4 items-center text-base text-white' : `text-white flex gap-4 items-center text-base`}><FaQuestionCircle className='text-2xl'/>My Queries</NavLink>
     </>
   )
 }

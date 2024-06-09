@@ -8,7 +8,7 @@ const Footer = () => {
         <p className="font-bold text-3xl md:text-7xl boska">
           HealthHeaven Ltd.
         </p>
-        <button className="p-5 text-4xl boska font-semibold border border-white rounded-full">Join NOW</button>
+        <button  className="p-5 text-4xl boska font-bold border border-white rounded-full">Join Us NOW</button>
         <p className="text-xl">Copyright © 2024 - All right reserved</p>
       </aside>
       <nav>

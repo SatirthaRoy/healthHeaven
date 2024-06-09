@@ -9,6 +9,7 @@ import { FaMinus, FaPlus } from 'react-icons/fa'
 import { IoBagCheckOutline } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom'
 import { ImCross } from 'react-icons/im'
+import HelemetTitle from '../../Shared components/HelemetTitle'
 
 
 const CartTable = ({items, refetch}) => {
@@ -112,6 +113,7 @@ const Cart = () => {
   const navigate = useNavigate();
   return (
     <div className='mt-40 w-11/12 mx-auto space-y-7'>
+      <HelemetTitle title='Cart || HH'/>
       <h1 className='text-7xl boska font-bold'>My Cart</h1>
       {cart.length ? <><button onClick={() => navigate('/checkout')} className='btn bg-theme hover:bg-theme text-white '>Checkout<IoBagCheckOutline className='text-2xl'/></button>
       <div>

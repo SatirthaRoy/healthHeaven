@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import useAxios from '../../Hooks/useAxios';
 import ShopTable from '../../Shared components/ShopTable';
 import { Spinner } from '@material-tailwind/react';
+import HelemetTitle from '../../Shared components/HelemetTitle';
 
 const ShopByCategory = () => {
   const axiosSecure = useAxios();
@@ -23,6 +24,7 @@ const ShopByCategory = () => {
 
   return (
     <div className='mt-52 space-y-10 w-11/12 mx-auto'>
+      <HelemetTitle title={`${category} || HH`}/>
       <h1 className='text-6xl boska font-semibold'>{category} Products</h1>
       {isLoading ? <Spinner className='mx-auto size-14'/> : <ShopTable items={categoryItems}/>}
     </div>
